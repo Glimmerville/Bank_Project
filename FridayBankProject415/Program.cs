@@ -34,6 +34,14 @@ namespace FridayBankProject415
             BankClient.ClientName = "Stan Lee";
             BankClient.AcctNumber = Accounts.generateAcctNum();
             Accounts AccountClient = new Accounts(0);//AccountClient = client's money
+            using (StreamWriter outputFile = new StreamWriter("AccountSummary.txt"))
+            {
+                outputFile.WriteLine("FIRST WCCI BANK");
+                outputFile.WriteLine("~~~~~~~~~~~~~~~");
+                outputFile.WriteLine("Client: " + BankClient.ClientName);
+                outputFile.WriteLine("Account Number: " + BankClient.AcctNumber);
+                outputFile.WriteLine("\r\n");
+            }
 
         BankMenu();
            
@@ -65,12 +73,17 @@ namespace FridayBankProject415
                         HeaderText();
                         AccountClient.Deposit();
                         //"Take the input and save it, change balance, also print to document (streamwriter)"
+                        Console.ReadKey();
+                        Console.Clear();
+                        BankMenu();
                         break;
                     case 4://withdraw funds
                         Console.Clear();
                         HeaderText();
                         AccountClient.Withdraw();
-                        //"Take the input and update the amount the client has, also print to document (streamwriter)");
+                        Console.ReadKey();
+                        Console.Clear();
+                        BankMenu();
                         break;
                     case 5://exit
                         Console.Clear();

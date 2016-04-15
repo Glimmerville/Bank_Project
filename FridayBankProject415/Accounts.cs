@@ -12,20 +12,15 @@ namespace FridayBankProject415
         //field
         private double clientBalance;
         //If I cannot figure out a field to put here
-        //maybe a field connected to writing out to streamwriter
-        //So save each transaction in a string
-        //THEN push them all to streamwriter
 
-        //I want to associate the client balance with the client somehow other than this
-        //Lauren said these items don't need to be associated at all
-        //So just make it print the line it needs to print.
 
         //deposit into savings vs checking? Transfers?
         //that would be fun, to have two. Maybe I will do that later.
 
         //properties
         public double ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
-        //need one more
+        //public string StreamWriterDocPath { get { return this.streamWriterDocPath; } }//not really useful
+        //not sure about this doc path as a prop
 
         //methods
         public static string generateAcctNum()//METHOD
@@ -43,9 +38,15 @@ namespace FridayBankProject415
             Console.WriteLine("\n\nHow much would you like to deposit?");
             double depositAmt = double.Parse(Console.ReadLine());
             this.ClientBalance = this.ClientBalance + depositAmt;
-            Console.WriteLine("Your current balance is: " + ClientBalance);
+            Console.WriteLine("Your current balance is: $" + ClientBalance);
+            using (StreamWriter outputFile = File.AppendText("AccountSummary.txt"))
+            {
+                outputFile.Write(DateTime.Now);
+                outputFile.Write(" $" + depositAmt + " \tDeposited. \tCurrent Balance: \t$" + this.ClientBalance);
+                outputFile.Write("\r\n");
+                        }
             //"Take the input and save it, change balance, also print to document (streamwriter)"
-            
+
         }
         public void Withdraw()
         {
@@ -55,6 +56,20 @@ namespace FridayBankProject415
             {
                 Console.WriteLine("Your account does not hold that much money. Invalid amount.");
             }
+            else {
+                this.ClientBalance = this.ClientBalance - withdrawAmt;
+                Console.WriteLine("Your current balance is: $" + ClientBalance);
+                using (StreamWriter outputFile = File.AppendText("AccountSummary.txt"))
+                {
+                    outputFile.Write(DateTime.Now);
+                    outputFile.Write(" $" + withdrawAmt + " \tWithdrawn. \tCurrent Balance: \t$" + this.ClientBalance);
+                    outputFile.Write("\r\n");
+                }
+            }
+        }
+        public static void writeStuff()
+        {
+
         }
 
         //Constructor - sets up client balance. 
