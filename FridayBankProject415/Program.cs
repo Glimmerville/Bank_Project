@@ -33,7 +33,7 @@ namespace FridayBankProject415
             Clients BankClient = new Clients();
             BankClient.ClientName = "Stan Lee";
             BankClient.AcctNumber = Accounts.generateAcctNum();
-            //Accounts.UpdateClientBal(0);
+            Accounts AccountClient = new Accounts(0);
 
         BankMenu();
            
@@ -58,15 +58,13 @@ namespace FridayBankProject415
                         Console.Clear();
                         HeaderText();
                         Accounts.Deposit();
-                        //Console.WriteLine("Here we will deposit funds.");
-                        //Console.WriteLine("How much would you like to deposit?");
                         //"Take the input and save it, change balance, also print to document (streamwriter)"
                         break;
                     case 4://withdraw funds
                         Console.Clear();
                         HeaderText();
                         Accounts.Withdraw();
-                        Console.WriteLine("Take the input and update the amount the client has, also print to document (streamwriter)");
+                        //"Take the input and update the amount the client has, also print to document (streamwriter)");
                         break;
                     case 5://exit
                         Console.Clear();

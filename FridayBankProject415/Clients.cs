@@ -19,7 +19,8 @@ namespace FridayBankProject415
         //I should never need to set the client number! they only get one number.
         //note: Lauren said it's ok to use random to generate a number and assign it
         //even though this means it will change every time you open the program.
-
+        //should I try-parse to make sure they put in numbers on the balance and withdrawal?
+        //make sure to dump some execption catchers into the streamwriter
         //put the generate-account-number in Accounts, then assign it here (?)
 
         //CONSTRUCTOR
@@ -27,7 +28,7 @@ namespace FridayBankProject415
         {
             //default constructor
         }
-        public Clients(string cliName, string cliNumber )
+        public Clients(string cliName, string cliNumber )//more useful constructor
         {
             this.ClientName = cliName;
             this.AcctNumber = cliNumber;
