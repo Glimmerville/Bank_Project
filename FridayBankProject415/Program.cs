@@ -29,10 +29,11 @@ namespace FridayBankProject415
         }
         static void Main(string[] args)
         {
+            //Hard Coded Client per instructions
             Clients BankClient = new Clients();
             BankClient.ClientName = "Stan Lee";
             BankClient.AcctNumber = Accounts.generateAcctNum();
-           // Accounts.ClientBalance;
+            //Accounts.UpdateClientBal(0);
 
         BankMenu();
            
@@ -51,7 +52,7 @@ namespace FridayBankProject415
                     case 2: //view acct balance
                         Console.Clear();
                         HeaderText();
-                        Console.WriteLine("Here we will print client balance $");
+                        Console.WriteLine("Your current balance is:");
                         break;
                     case 3: //deposit funds
                         Console.Clear();
@@ -64,9 +65,7 @@ namespace FridayBankProject415
                     case 4://withdraw funds
                         Console.Clear();
                         HeaderText();
-                        Console.WriteLine("Here we will withdraw funds.");
-                        Console.WriteLine("How much would you like to withdraw?");
-                        int withdraw = int.Parse(Console.ReadLine());
+                        Accounts.Withdraw();
                         Console.WriteLine("Take the input and update the amount the client has, also print to document (streamwriter)");
                         break;
                     case 5://exit
@@ -76,7 +75,7 @@ namespace FridayBankProject415
                         //Console.ReadKey();
                         Environment.Exit(0);
                         break;
-                    default:
+                    default://the only cool part.
                         Console.WriteLine("Invalid choice.");
                         Thread.Sleep(1000);
                         Console.Clear();

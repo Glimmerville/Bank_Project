@@ -27,7 +27,7 @@ namespace FridayBankProject415
         {
             //default constructor
         }
-        public Clients(string cliName, string cliNumber)
+        public Clients(string cliName, string cliNumber )
         {
             this.ClientName = cliName;
             this.AcctNumber = cliNumber;
