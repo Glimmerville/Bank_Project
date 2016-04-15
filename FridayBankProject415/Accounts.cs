@@ -7,10 +7,10 @@ using System.IO;
 
 namespace FridayBankProject415
 {
-    class Accounts: Clients
+    class Accounts
     {
         //field
-        private int clientBalance;
+        private double clientBalance;
         //If I cannot figure out a field to put here
         //maybe a field connected to writing out to streamwriter
         //So save each transaction in a string
@@ -24,7 +24,7 @@ namespace FridayBankProject415
         //that would be fun, to have two. Maybe I will do that later.
 
         //properties
-        public int ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
+        public double ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
         //need one more
 
         //methods
@@ -38,31 +38,26 @@ namespace FridayBankProject415
             }
             return sbnumber.ToString();
         }
-        public static void Deposit()//METHOD
+        public void Deposit()//METHOD
         {
             Console.WriteLine("\n\nHow much would you like to deposit?");
             double depositAmt = double.Parse(Console.ReadLine());
-            AccountHolder.ClientBalance = AccountHolder.ClientBalance + depositAmt;
-            //Console.WriteLine("Your current balance is: " + (ClientBalance));
+            this.ClientBalance = this.ClientBalance + depositAmt;
+            Console.WriteLine("Your current balance is: " + ClientBalance);
             //"Take the input and save it, change balance, also print to document (streamwriter)"
             
         }
-        public static void Withdraw()
+        public void Withdraw()
         {
             Console.WriteLine("\n\nHow much would you like to withdraw?");
             Double withdrawAmt = double.Parse(Console.ReadLine());
-            if (withdrawAmt > AccountHolder.ClientBalance)
+            if (withdrawAmt > this.ClientBalance)
             {
                 Console.WriteLine("Your account does not hold that much money. Invalid amount.");
             }
         }
 
-        //Constructor - sets up client balance. Does not work yet
-        //public void UpdateClientBal(int cBalance)
-        //{
-        //  this.clientBalance = cBalance;
-        //}
-
+        //Constructor - sets up client balance. 
         //thinking in objects, we need an "account holder to hold this balance" I think.
         public Accounts(int cBalance)
         {

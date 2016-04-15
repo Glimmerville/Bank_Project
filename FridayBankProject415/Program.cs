@@ -30,10 +30,10 @@ namespace FridayBankProject415
         static void Main(string[] args)
         {
             //Hard Coded Client per instructions
-            Clients BankClient = new Clients();
+            Clients BankClient = new Clients();//BankClient = client's info
             BankClient.ClientName = "Stan Lee";
             BankClient.AcctNumber = Accounts.generateAcctNum();
-            Accounts AccountClient = new Accounts(0);
+            Accounts AccountClient = new Accounts(0);//AccountClient = client's money
 
         BankMenu();
            
@@ -48,22 +48,28 @@ namespace FridayBankProject415
                         HeaderText();
                         Console.WriteLine("\n\nClient name: " + BankClient.ClientName);
                         Console.WriteLine("Account Number: " + BankClient.AcctNumber);
+                        Console.ReadKey();
+                        Console.Clear();
+                        BankMenu();
                         break;
                     case 2: //view acct balance
                         Console.Clear();
                         HeaderText();
-                        Console.WriteLine("Your current balance is:");
+                        Console.WriteLine("\n\nYour current balance is: $" + AccountClient.ClientBalance);
+                        Console.ReadKey();
+                        Console.Clear();
+                        BankMenu();
                         break;
                     case 3: //deposit funds
                         Console.Clear();
                         HeaderText();
-                        Accounts.Deposit();
+                        AccountClient.Deposit();
                         //"Take the input and save it, change balance, also print to document (streamwriter)"
                         break;
                     case 4://withdraw funds
                         Console.Clear();
                         HeaderText();
-                        Accounts.Withdraw();
+                        AccountClient.Withdraw();
                         //"Take the input and update the amount the client has, also print to document (streamwriter)");
                         break;
                     case 5://exit
