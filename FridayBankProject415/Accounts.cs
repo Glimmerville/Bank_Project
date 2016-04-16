@@ -93,6 +93,10 @@ namespace FridayBankProject415
         }
 
         //constructor - sets up client balance and validates client 
+        public Accounts()
+        {
+            // default constructor
+        }
         public Accounts(int cBalance, bool cValidate)
         {
             this.ClientBalance = cBalance;
