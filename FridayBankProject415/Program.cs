@@ -32,7 +32,7 @@ namespace FridayBankProject415
         {
             //Hard Coded Client per instructions
             Clients BankClient = new Clients();//BankClient = client's info
-            BankClient.ClientName = "Stan Lee";
+            BankClient.ClientName = Clients.FullName("Stan", "Lee");
             BankClient.AcctNumber = Accounts.generateAcctNum();// Generate random account # 
             Accounts AccountClient = new Accounts(0, true);//AccountClient = client's money & validation
             using (StreamWriter outputFile = new StreamWriter("AccountSummary.txt"))
