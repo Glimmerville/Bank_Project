@@ -33,7 +33,7 @@ namespace FridayBankProject415
             Clients BankClient = new Clients();//BankClient = client's info
             BankClient.ClientName = "Stan Lee";
             BankClient.AcctNumber = Accounts.generateAcctNum();
-            Accounts AccountClient = new Accounts(0);//AccountClient = client's money
+            Accounts AccountClient = new Accounts(0, true);//AccountClient = client's money & validation
             using (StreamWriter outputFile = new StreamWriter("AccountSummary.txt"))
             {
                 outputFile.WriteLine("FIRST WCCI BANK");
@@ -72,7 +72,6 @@ namespace FridayBankProject415
                         Console.Clear();
                         HeaderText();
                         AccountClient.Deposit();
-                        //"Take the input and save it, change balance, also print to document (streamwriter)"
                         Console.ReadKey();
                         Console.Clear();
                         BankMenu();
@@ -89,7 +88,6 @@ namespace FridayBankProject415
                         Console.Clear();
                         HeaderText();
                         Console.WriteLine("\nThank you for using First WCCI Bank.");
-                        //Console.ReadKey();
                         Environment.Exit(0);
                         break;
                     default://the only cool part.

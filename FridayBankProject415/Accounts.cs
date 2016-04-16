@@ -11,14 +11,11 @@ namespace FridayBankProject415
     {
         //field
         private double clientBalance;
-        //I cannot figure out another field to put here
-        //Create a random "is account valid" field
-        //for if account balance is not negative??? or account start date?
-        //Lauren said sure do whatever.
         private bool validateAccount;
 
         //properties
         public double ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
+        public bool ValidateAccount {get {return this.validateAccount; } set { this.validateAccount = value; } }
 
 
         //methods
@@ -41,7 +38,7 @@ namespace FridayBankProject415
             using (StreamWriter outputFile = File.AppendText("AccountSummary.txt"))
             {
                 outputFile.Write(DateTime.Now);
-                outputFile.Write(" $" + depositAmt + " \t+ \tCurrent Balance: \t$" + this.ClientBalance);
+                outputFile.Write(" + $" + depositAmt + "\tUpdated Balance: $" + this.ClientBalance);
                 outputFile.Write("\r\n");
             }
         }
@@ -60,16 +57,18 @@ namespace FridayBankProject415
                 using (StreamWriter outputFile = File.AppendText("AccountSummary.txt"))
                 {
                     outputFile.Write(DateTime.Now);
-                    outputFile.Write(" $" + withdrawAmt + " \t- \tCurrent Balance: \t$" + this.ClientBalance);
+                    outputFile.Write(" - $" + withdrawAmt + "\tUpdated Balance: $" + this.ClientBalance);
                     outputFile.Write("\r\n");
                 }
             }
         }
 
         //Constructor - sets up client balance. 
-        public Accounts(int cBalance)
+        public Accounts(int cBalance, bool cValidate)
         {
             this.ClientBalance = cBalance;
+            this.ValidateAccount = cValidate;
         }
+    
     }
 }
