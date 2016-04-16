@@ -7,22 +7,24 @@ using System.IO;
 
 namespace FridayBankProject415
 {
-    class Accounts
+    class Account
     {
         //field
         private double clientBalance;
         private bool validateAccount;
-        private string Output { get; } = @"AccountSummary.txt";
+        private string output; //Output = current stream
+        public string serviceName = "bank";
 
         //properties
         public double ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
         public bool ValidateAccount { get { return this.validateAccount; } set { this.validateAccount = value; } }
+        public virtual string Output { get { return this.output; } set { this.output = value; } }
         //methods
         public static string generateAcctNum()//METHOD
         {
-        StringBuilder sbnumber = new StringBuilder();
-        Random acctDigit = new Random();
-            for (int i = 0; i< 10; i++)
+            StringBuilder sbnumber = new StringBuilder();
+            Random acctDigit = new Random();
+            for (int i = 0; i < 10; i++)
             {
                 sbnumber.Append(acctDigit.Next(0, 10));
             }
@@ -30,56 +32,56 @@ namespace FridayBankProject415
         }
         public void Deposit()//METHOD
         {
-            Console.WriteLine("\n\nHow much would you like to deposit?");
+            Console.WriteLine("\n\nHow much would you like to deposit into {0}?", serviceName);
             double depositAmt = double.Parse(Console.ReadLine());
             this.ClientBalance = this.ClientBalance + depositAmt;
-            Console.WriteLine("Your current balance is: $" + ClientBalance);
+            Console.WriteLine("Your current {0} balance is: $", serviceName + ClientBalance);
             try
-            { 
+            {
                 using (StreamWriter outputFile = File.AppendText(Output))
                 {
-                    outputFile.Write("Transaction: "+DateTime.Now);
+                    outputFile.Write("Transaction: " + DateTime.Now);
                     outputFile.Write(" + $" + depositAmt + "\tUpdated Balance: $" + this.ClientBalance);
                     outputFile.Write("\r\n");
                 }
             }
             catch (FileNotFoundException)
             {
-                Console.Error.WriteLine("Can't find file {0}", Output);
+                Console.Error.WriteLine("Can't find file {0}", Output); //Output = current stream
             }
             catch (DirectoryNotFoundException)
             {
                 Console.Error.WriteLine("Invalid directory in the file path.");
             }
-            catch(IOException)
+            catch (IOException)
             {
-                Console.Error.WriteLine("Can't open the file {0}", Output);
+                Console.Error.WriteLine("Can't open the file {0}", Output); //Output = current stream
             }
         }
         public void Withdraw()//METHOD
         {
-            Console.WriteLine("\n\nHow much would you like to withdraw?");
+            Console.WriteLine("\n\nHow much would you like to withdraw from {0}?", serviceName);
             Double withdrawAmt = double.Parse(Console.ReadLine());
             if (withdrawAmt > this.ClientBalance)
             {
-                Console.WriteLine("Your account does not hold that much money. Invalid amount.");
+                Console.WriteLine("Your {0} account does not hold that much money. Invalid amount.", serviceName);
             }
             else
             {
                 this.ClientBalance = this.ClientBalance - withdrawAmt;
-                Console.WriteLine("Your current balance is: $" + ClientBalance);
+                Console.WriteLine("Your current {0} balance is: $", serviceName + ClientBalance);
                 try
                 {
-                    using (StreamWriter outputFile = File.AppendText(Output))
+                    using (StreamWriter outputFile = File.AppendText(Output)) //Output = current stream
                     {
-                        outputFile.Write("Transaction: " +DateTime.Now);
+                        outputFile.Write("Transaction: " + DateTime.Now);
                         outputFile.Write(" - $" + withdrawAmt + "\tUpdated Balance: $" + this.ClientBalance);
                         outputFile.Write("\r\n");
                     }
                 }
                 catch (FileNotFoundException)
                 {
-                    Console.Error.WriteLine("Can't find file {0}", Output);
+                    Console.Error.WriteLine("Can't find file {0}", Output); //Output = current stream
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -87,21 +89,21 @@ namespace FridayBankProject415
                 }
                 catch (IOException)
                 {
-                    Console.Error.WriteLine("Can't open the file {0}", Output);
+                    Console.Error.WriteLine("Can't open the file {0}", Output);//Output = current stream
                 }
             }
         }
 
         //constructor - sets up client balance and validates client 
-        public Accounts()
+        public Account()
         {
             // default constructor
         }
-        public Accounts(int cBalance, bool cValidate)
+        public Account(double cBalance, bool cValidate)
         {
             this.ClientBalance = cBalance;
             this.ValidateAccount = cValidate;
         }
-    
+
     }
 }

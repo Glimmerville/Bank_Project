@@ -7,17 +7,17 @@ using System.IO;
 
 namespace FridayBankProject415
 {
-    class Clients
+    class Client
     {
         //field
-        private string clientFirstName;
-        private string clientLastName;
+        //private string clientFirstName;
+        //private string clientLastName;
         private string clientName;
         private string acctNumber;
 
         //properties
-        public string ClientFirstName { get { return this.clientFirstName; } set { this.clientFirstName = value; } }
-        public string ClientLastName { get { return this.clientLastName; } set { this.clientLastName = value; } }
+        //public string ClientFirstName { get { return this.clientFirstName; } set { this.clientFirstName = value; } }
+        //public string ClientLastName { get { return this.clientLastName; } set { this.clientLastName = value; } }
         public string ClientName { get { return this.clientName; } set { this.clientName = value; } }
         public string AcctNumber { get { return this.acctNumber; } set { this.acctNumber = value; } }
 
@@ -28,14 +28,14 @@ namespace FridayBankProject415
             return ClientFullName;
         }
         //constructor
-        public Clients()
+        public Client()
         {
             //default constructor
         }
-        public Clients(string cliName, string cliNumber )//more useful constructor
+        public Client(string cliName, string cliNumber)//more useful constructor
         {
             this.ClientName = cliName;
-            this.AcctNumber = cliNumber;
+            this.AcctNumber = cliNumber;  
         }
     }
 }

@@ -31,11 +31,11 @@ namespace FridayBankProject415
         static void Main(string[] args)
         {
             //Hard Coded Client per instructions
-            Clients BankClient = new Clients();//BankClient = client's info
-            BankClient.ClientName = Clients.FullName("Stan", "Lee");
-            BankClient.AcctNumber = Accounts.generateAcctNum();// Generate random account # 
-            Accounts AccountClient = new Accounts(0, true);//AccountClient = client's money & validation
-            using (StreamWriter outputFile = new StreamWriter("AccountSummary.txt"))
+            Client BankClient = new Client();//BankClient = client's info
+            BankClient.ClientName = Client.FullName("Stan", "Lee");
+            BankClient.AcctNumber = Account.generateAcctNum();// Generate random account # 
+            Account AccountClient = new Account(0, 0, 0, true);//AccountClient = client's money & validation
+            using (StreamWriter outputFile = new StreamWriter("CheckingSummary.txt"))
             {
                 outputFile.WriteLine("FIRST WCCI BANK");
                 outputFile.WriteLine("~~~~~~~~~~~~~~~");
@@ -43,13 +43,29 @@ namespace FridayBankProject415
                 outputFile.WriteLine("Account Number: " + BankClient.AcctNumber);
                 outputFile.WriteLine("\r\n");
             }
-
-        BankMenu();
+            using (StreamWriter outputFileSv = new StreamWriter("SavingsSummary.txt"))
+            {
+                outputFileSv.WriteLine("FIRST WCCI BANK");
+                outputFileSv.WriteLine("~~~~~~~~~~~~~~~");
+                outputFileSv.WriteLine("Client: " + BankClient.ClientName);
+                outputFileSv.WriteLine("Account Number: " + BankClient.AcctNumber);
+                outputFileSv.WriteLine("\r\n");
+            }
+            using (StreamWriter outputFileRv = new StreamWriter("ReserveSummary.txt"))
+            {
+                outputFileRv.WriteLine("FIRST WCCI BANK");
+                outputFileRv.WriteLine("~~~~~~~~~~~~~~~");
+                outputFileRv.WriteLine("Client: " + BankClient.ClientName);
+                outputFileRv.WriteLine("Account Number: " + BankClient.AcctNumber);
+                outputFileRv.WriteLine("\r\n");
+            }
+            BankMenu();
            
             int menuChoice = 0;
             while (menuChoice != 5)
             {
-                int input = int.Parse(Console.ReadLine());
+                int input;
+                bool success = int.TryParse(Console.ReadLine(), out input);//This fixed stuff!
                 switch (input)
                 {
                     case 1: //view client info
@@ -57,6 +73,9 @@ namespace FridayBankProject415
                         HeaderText();
                         Console.WriteLine("\n\nClient name: " + BankClient.ClientName);
                         Console.WriteLine("Account Number: " + BankClient.AcctNumber);
+                        Console.WriteLine("Savings Balance:"); //+ BankClient.SavingsBal);
+                        Console.WriteLine("Checking Balance:"); //+ BankClient.CheckingBal);
+                        Console.WriteLine("Reserve Balance:"); //+ BankClient.ReserveBal);
                         Console.ReadKey();
                         Console.Clear();
                         BankMenu();
