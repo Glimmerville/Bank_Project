@@ -38,7 +38,7 @@ namespace FridayBankProject415
             { 
                 using (StreamWriter outputFile = File.AppendText(Output))
                 {
-                    outputFile.Write(DateTime.Now);
+                    outputFile.Write("Transaction: "+DateTime.Now);
                     outputFile.Write(" + $" + depositAmt + "\tUpdated Balance: $" + this.ClientBalance);
                     outputFile.Write("\r\n");
                 }
@@ -72,7 +72,7 @@ namespace FridayBankProject415
                 {
                     using (StreamWriter outputFile = File.AppendText(Output))
                     {
-                        outputFile.Write(DateTime.Now);
+                        outputFile.Write("Transaction: " +DateTime.Now);
                         outputFile.Write(" - $" + withdrawAmt + "\tUpdated Balance: $" + this.ClientBalance);
                         outputFile.Write("\r\n");
                     }
@@ -92,7 +92,7 @@ namespace FridayBankProject415
             }
         }
 
-        //Constructor - sets up client balance and validates client 
+        //constructor - sets up client balance and validates client 
         public Accounts(int cBalance, bool cValidate)
         {
             this.ClientBalance = cBalance;

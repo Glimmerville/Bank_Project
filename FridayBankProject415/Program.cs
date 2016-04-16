@@ -10,12 +10,12 @@ namespace FridayBankProject415
 {
     class Program
     {
-        //set up some methods
+        //set up some methods I will use a lot
         static void HeaderText()
         {
-            Console.WriteLine("**************************");
-            Console.WriteLine("*    FIRST WCCI BANK     *");
-            Console.WriteLine("**************************");
+            Console.WriteLine("        **************************");
+            Console.WriteLine("        *    FIRST WCCI BANK     *");
+            Console.WriteLine("        **************************");
         }
         static void BankMenu()
         {
@@ -27,12 +27,13 @@ namespace FridayBankProject415
             Console.WriteLine("4.  Withdraw Funds");
             Console.WriteLine("5.  Exit");
         }
+        //Main
         static void Main(string[] args)
         {
             //Hard Coded Client per instructions
             Clients BankClient = new Clients();//BankClient = client's info
             BankClient.ClientName = "Stan Lee";
-            BankClient.AcctNumber = Accounts.generateAcctNum();
+            BankClient.AcctNumber = Accounts.generateAcctNum();// Generate random account # 
             Accounts AccountClient = new Accounts(0, true);//AccountClient = client's money & validation
             using (StreamWriter outputFile = new StreamWriter("AccountSummary.txt"))
             {
@@ -90,7 +91,7 @@ namespace FridayBankProject415
                         Console.WriteLine("\nThank you for using First WCCI Bank.");
                         Environment.Exit(0);
                         break;
-                    default://the only cool part.
+                    default://I love adding sleep and making it pause.
                         Console.WriteLine("Invalid choice.");
                         Thread.Sleep(1000);
                         Console.Clear();
