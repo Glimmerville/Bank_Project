@@ -11,7 +11,7 @@ namespace FridayBankProject415
         //field 
         public new string Output  = @"SavingsSummary.txt";
         public new string serviceName = "Savings";
-        private double savingsBalance;
+        private new double savingsBalance;
 
 
         public new double ClientBalance { get { return this.savingsBalance; } set { this.savingsBalance = value; } }

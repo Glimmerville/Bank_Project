@@ -34,7 +34,7 @@ namespace FridayBankProject415
             Client BankClient = new Client();//BankClient = client's info
             BankClient.ClientName = Client.FullName("Stan", "Lee");
             BankClient.AcctNumber = Account.generateAcctNum();// Generate random account # 
-            Account AccountClient = new Account(0, 0, 0, true);//AccountClient = client's money & validation
+            Account AccountClient = new Account(0, 0, 0, 0, true);//AccountClient = client's money & validation
             using (StreamWriter outputFile = new StreamWriter("CheckingSummary.txt"))
             {
                 outputFile.WriteLine("FIRST WCCI BANK");
@@ -60,7 +60,7 @@ namespace FridayBankProject415
                 outputFileRv.WriteLine("\r\n");
             }
             BankMenu();
-           
+
             int menuChoice = 0;
             while (menuChoice != 5)
             {
@@ -83,7 +83,7 @@ namespace FridayBankProject415
                     case 2: //view acct balance
                         Console.Clear();
                         HeaderText();
-                        Console.WriteLine("\n\nYour current balance is: $" + AccountClient.ClientBalance);
+                        AccountsMenu();
                         Console.ReadKey();
                         Console.Clear();
                         BankMenu();
@@ -115,6 +115,62 @@ namespace FridayBankProject415
                         Thread.Sleep(1000);
                         Console.Clear();
                         BankMenu();
+                        break;
+                }
+
+            }
+
+        }
+        public static void AccountsMenu()
+        {
+            Console.WriteLine("\n\nPick an Option From the Following Menu:\n");
+            Console.WriteLine("1.  View Checking Account Balance");
+            Console.WriteLine("2.  View Savings Account Balance");
+            Console.WriteLine("3.  View Reserve Account Balance");
+            Console.WriteLine("4.  Exit");
+            int menuChoice = 0;
+            while (menuChoice != 4)
+            {
+                int input;
+                bool success = int.TryParse(Console.ReadLine(), out input);
+                switch (input)
+                {
+                    case 1://checking
+                        Console.Clear();
+                        HeaderText();
+                        Console.WriteLine("You are viewing your checking account balance");
+                        Console.ReadKey();
+                        Console.Clear();
+                        HeaderText();
+                        AccountsMenu();
+                        break;
+                    case 2://saving
+                        Console.Clear();
+                        HeaderText();
+                        Console.WriteLine("You are viewing your savings account balance");
+                        Console.ReadKey();
+                        Console.Clear();
+                        HeaderText();
+                        AccountsMenu();
+                        break;
+                    case 3://reserve
+                        Console.Clear();
+                        HeaderText();
+                        Console.WriteLine("You are viewing your Reserve account balance");
+                        Console.ReadKey();
+                        Console.Clear();
+                        HeaderText();
+                        AccountsMenu();
+                        break;
+                    case 4://exit
+                        Console.Clear();
+                        BankMenu();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        AccountsMenu();
                         break;
                 }
             }

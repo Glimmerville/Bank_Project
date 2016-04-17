@@ -13,7 +13,10 @@ namespace FridayBankProject415
         private double clientBalance;
         private bool validateAccount;
         private string output; //Output = current stream
-        public string serviceName = "bank";
+        private double SavingsBalance { get; set; } = 0;
+        private double CheckingBalance { get; set; } = 0;
+        private double ReserveBalance { get; set; } = 0;
+        public string serviceName = "Bank";
 
         //properties
         public double ClientBalance { get { return this.clientBalance; } set { this.clientBalance = value; } }
@@ -99,10 +102,14 @@ namespace FridayBankProject415
         {
             // default constructor
         }
-        public Account(double cBalance, bool cValidate)
+        public Account(double cBalance, double sBalance, double rBalance, double chBalance, bool cValidate)
         {
             this.ClientBalance = cBalance;
+            this.CheckingBalance = chBalance;
+            this.SavingsBalance = sBalance;
+            this.ReserveBalance = rBalance;
             this.ValidateAccount = cValidate;
+
         }
 
     }
